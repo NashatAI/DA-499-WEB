@@ -173,6 +173,30 @@
         </select><br><br>
         <input type="submit" value="إرسال">
     </form>
+    <script>
+    // استهداف النموذج للاستماع لعملية الإرسال
+    document.querySelector('form').addEventListener('submit', function (event) {
+        event.preventDefault(); // منع إعادة تحميل الصفحة عند الإرسال
+
+        // جمع البيانات من النموذج
+        const formData = new FormData(event.target);
+        const data = [];
+
+        // تحويل البيانات إلى مصفوفة تحتوي على الأسئلة والإجابات
+        for (let [key, value] of formData.entries()) {
+            data.push([key, value]);
+        }
+
+        // إعداد ملف Excel باستخدام مكتبة SheetJS
+        const ws = XLSX.utils.aoa_to_sheet([["السؤال", "الإجابة"], ...data]); // إضافة رؤوس الأعمدة
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, "Responses");
+
+        // تنزيل ملف Excel
+        XLSX.writeFile(wb, "responses.xlsx");
+    });
+</script>
+
 </body>
 </html>
 
