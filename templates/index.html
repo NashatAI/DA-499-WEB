@@ -59,6 +59,7 @@
             margin-top: 20px;
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
 <body>
     <h1>تطوير الأداء الدراسي</h1>
@@ -174,29 +175,47 @@
         <input type="submit" value="إرسال">
     </form>
     <script>
-    // استهداف النموذج للاستماع لعملية الإرسال
-    document.querySelector('form').addEventListener('submit', function (event) {
-        event.preventDefault(); // منع إعادة تحميل الصفحة عند الإرسال
+        document.querySelector('form').addEventListener('submit', function (event) {
+            event.preventDefault();
 
-        // جمع البيانات من النموذج
-        const formData = new FormData(event.target);
-        const data = [];
+            if (typeof XLSX === 'undefined') {
+                alert("مكتبة Excel غير متوفرة. يرجى التأكد من تضمين مكتبة SheetJS.");
+                return;
+            }
 
-        // تحويل البيانات إلى مصفوفة تحتوي على الأسئلة والإجابات
-        for (let [key, value] of formData.entries()) {
-            data.push([key, value]);
-        }
+            const formData = new FormData(event.target);
+            const collectedData = {};
 
-        // إعداد ملف Excel باستخدام مكتبة SheetJS
-        const ws = XLSX.utils.aoa_to_sheet([["السؤال", "الإجابة"], ...data]); // إضافة رؤوس الأعمدة
-        const wb = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(wb, ws, "Responses");
+            for (let [key, value] of formData.entries()) {
+                if (!collectedData[key]) {
+                    collectedData[key] = value;
+                } else {
+                    collectedData[key] += `, ${value}`;
+                }
+            }
 
-        // تنزيل ملف Excel
-        XLSX.writeFile(wb, "responses.xlsx");
-    });
-</script>
+            const focusTime = parseInt(formData.get("focus-time"), 10);
+            const gpa = parseFloat(formData.get("current-gpa"));
 
+            if (focusTime <= 0 || focusTime > 300) {
+                alert("الرجاء إدخال عدد دقائق صالح (بين 1 و300)!");
+                return;
+            }
+
+            if (gpa <= 0 || gpa > 100) {
+                alert("الرجاء إدخال معدل صحيح (بين 1 و100)!");
+                return;
+            }
+
+            const data = [["السؤال", "الإجابة"], ...Object.entries(collectedData)];
+
+            const ws = XLSX.utils.aoa_to_sheet(data);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "Responses");
+
+            XLSX.writeFile(wb, "responses.xlsx");
+            alert("تم تنزيل ملف Excel بنجاح!");
+        });
+    </script>
 </body>
 </html>
-
