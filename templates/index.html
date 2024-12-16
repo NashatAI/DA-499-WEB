@@ -4,13 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مشروع تطوير الأداء الدراسي</title>
+<<<<<<< HEAD
+      <link rel="stylesheet" href="/static/style.css">
+=======
+>>>>>>> 2250bc36253082fe0b97557774558c44f1cf2ec6
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-align: center;
             margin: 0;
             padding: 0;
+<<<<<<< HEAD
+            direction: rtl;	
+=======
             direction: rtl;
+>>>>>>> 2250bc36253082fe0b97557774558c44f1cf2ec6
             background-color: #f9f9f9;
             color: #333;
         }
@@ -92,6 +100,10 @@
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<<<<<<< HEAD
+       <link rel="icon" href="data:," />
+=======
+>>>>>>> 2250bc36253082fe0b97557774558c44f1cf2ec6
 </head>
 <body>
     <header>
@@ -162,6 +174,124 @@
                 <label for="math101">تفاضل وتكامل (MATH 101)</label><br><br>
             </div>
             
+<<<<<<< HEAD
+<div class="option-group" id="grades-section">
+    <label class="question" for="grade1">7. ما هي العلامة التي حصلت عليها في مساق نظم معلومات حاسوبية (CIS 120)</label><br>
+    <select id="grade1" name="grade1">
+        <option value="" disabled selected>اختر</option>
+        <option value="80-89">80-89</option>
+        <option value="70-79">70-79</option>
+        <option value="60-69">60-69</option>
+        <option value="50-59">50-59</option>
+    </select><br>
+
+    <label class="question" for="grade2">8. ما هي العلامة التي حصلت عليها في مساق احصاء (STAT 101)</label><br>
+    <select id="grade2" name="grade2">
+        <option value="" disabled selected>اختر</option>
+        <option value="90-100">90-100</option>
+        <option value="80-89">80-89</option>
+        <option value="70-79">70-79</option>
+        <option value="60-69">60-69</option>
+        <option value="50-59">50-59</option>
+    </select><br>
+
+    <label class="question" for="grade3">9. ما هي العلامة التي حصلت عليها في مساق برمجه بلغة مختارة (CS 111)</label><br>
+    <select id="grade3" name="grade3">
+        <option value="" disabled selected>اختر</option>
+        <option value="90-100">90-100</option>
+        <option value="80-89">80-89</option>
+        <option value="70-79">70-79</option>
+        <option value="60-69">60-69</option>
+        <option value="50-59">50-59</option>
+    </select><br>
+
+    <label class="question" for="grade4">10. ما هي العلامة التي حصلت عليها في مساق تعلم آلي (DA 350)</label><br>
+    <select id="grade4" name="grade4">
+        <option value="" disabled selected>اختر</option>
+        <option value="90-100">90-100</option>
+        <option value="80-89">80-89</option>
+        <option value="70-79">70-79</option>
+        <option value="60-69">60-69</option>
+        <option value="50-59">50-59</option>
+    </select><br>
+
+    <label class="question" for="grade5">11. ما هي العلامة التي حصلت عليها في مساق تفاضل وتكامل (MATH 101)</label><br>
+    <select id="grade5" name="grade5">
+        <option value="" disabled selected>اختر</option>
+        <option value="90-100">90-100</option>
+        <option value="80-89">80-89</option>
+        <option value="70-79">70-79</option>
+        <option value="60-69">60-69</option>
+        <option value="50-59">50-59</option>
+    </select><br>
+</div>
+
+
+            <div class="option-group">
+                <label class="question" for="gpa">12. ما هو معدلك التراكمي؟</label><br>
+                <input type="number" id="gpa" name="gpa" min="0" max="100" step="0.1" required><br><br>
+            </div>
+
+            <button type="submit" class="button">إرسال</button>
+
+</form>
+<button id="viewResults">عرض النتائج</button>
+<button id="downloadExcel">تنزيل الملف</button>
+<div id="resultsDisplay" style="margin-top: 20px; display: none;">
+    <h2>النتائج المخزنة:</h2>
+    <ul id="resultsList"></ul>
+</div>
+
+<script>
+    let storedData = JSON.parse(localStorage.getItem("studyResponses")) || [];
+
+    const headers = [
+        "كيف درست مواد الفهم؟",
+        "متى تكون أكثر نشاطًا؟",
+        "كيف تفضل أن تدرس؟",
+        "كم دقيقة تستطيع البقاء محافظًا على تركيزك أثناء الدراسة؟",
+        "ما هي الأدوات التي تستخدمها لإدارة وقتك؟",
+        "المواد التي درستها",
+        "العلامة في نظم معلومات حاسوبية (CIS 120)",
+        "العلامة في احصاء (STAT 101)",
+        "العلامة في برمجه بلغة مختارة (CS 111)",
+        "العلامة في تعلم آلي (DA 350)",
+        "العلامة في تفاضل وتكامل (MATH 101)",
+        "المعدل التراكمي"
+    ];
+document.querySelector("form").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const response = {};
+
+    for (let [key, value] of formData.entries()) {
+        response[key] = value;
+    }
+
+    storedData.push(response);
+    localStorage.setItem("studyResponses", JSON.stringify(storedData));
+
+    alert("تم حفظ الإجابات بنجاح!");
+    event.target.reset();
+});
+
+document.getElementById("downloadExcel").addEventListener("click", function () {
+    if (storedData.length === 0) {
+        alert("لا توجد بيانات لتنزيلها.");
+        return;
+    }
+
+    const dataWithHeaders = [headers, ...storedData.map(entry => headers.map(header => entry[header] || ""))];
+
+    const ws = XLSX.utils.aoa_to_sheet(dataWithHeaders);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Responses");
+
+    XLSX.writeFile(wb, "responses.xlsx");
+});
+</script>
+=======
             <div class="option-group" id="grades-section">
                 <label class="question" for="grade1">7. ما هي العلامة التي حصلت عليها في مساق نظم معلومات حاسوبية (CIS 120)</label><br>
                 <select id="grade1" name="grade1" required>
@@ -324,6 +454,7 @@ document.getElementById("downloadExcel").addEventListener("click", function () {
  
 </script>
 
+>>>>>>> 2250bc36253082fe0b97557774558c44f1cf2ec6
 
 </body>
 </html>
