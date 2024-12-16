@@ -4,21 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مشروع تطوير الأداء الدراسي</title>
-<<<<<<< HEAD
       <link rel="stylesheet" href="/static/style.css">
-=======
->>>>>>> 2250bc36253082fe0b97557774558c44f1cf2ec6
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-align: center;
             margin: 0;
             padding: 0;
-<<<<<<< HEAD
             direction: rtl;	
-=======
             direction: rtl;
->>>>>>> 2250bc36253082fe0b97557774558c44f1cf2ec6
             background-color: #f9f9f9;
             color: #333;
         }
@@ -394,67 +388,6 @@ document.getElementById("downloadExcel").addEventListener("click", function () {
         alert("تم حفظ الإجابات بنجاح!");
         event.target.reset(); // إعادة تعيين النموذج
     });
-
-document.querySelector("form").addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    const formData = new FormData(event.target);
-    const response = {};
-
-    // جمع القيم من كل الحقول
-    for (let [key, value] of formData.entries()) {
-        if (response[key]) {
-            // إذا كانت الحقول متعددة القيم (مثل checkboxes)
-            response[key] = Array.isArray(response[key]) ? [...response[key], value] : [response[key], value];
-        } else {
-            response[key] = value;
-        }
-    }
-
-    // إضافة البيانات الجديدة إلى القائمة المخزنة
-    storedData.push(response);
-    localStorage.setItem("studyResponses", JSON.stringify(storedData));
-
-    alert("تم حفظ الإجابات بنجاح!");
-    event.target.reset(); // إعادة تعيين النموذج
-});
-document.getElementById("viewResults").addEventListener("click", function () {
-    const resultsDisplay = document.getElementById("resultsDisplay");
-    const resultsList = document.getElementById("resultsList");
-
-    resultsList.innerHTML = ""; // تنظيف القائمة
-
-    if (storedData.length === 0) {
-        resultsList.innerHTML = "<li>لا توجد بيانات مخزنة.</li>";
-    } else {
-        storedData.forEach((entry, index) => {
-            const listItem = document.createElement("li");
-            listItem.textContent = `الإجابة ${index + 1}: ${JSON.stringify(entry)}`;
-            resultsList.appendChild(listItem);
-        });
-    }
-
-    resultsDisplay.style.display = "block"; // إظهار النتائج
-});  
-document.getElementById("downloadExcel").addEventListener("click", function () {
-    if (storedData.length === 0) {
-        alert("لا توجد بيانات لتنزيلها.");
-        return;
-    }
-
-    // إعداد البيانات مع الرؤوس
-    const dataWithHeaders = [headers, ...storedData.map(entry => headers.map(header => entry[header] || ""))];
-
-    const ws = XLSX.utils.aoa_to_sheet(dataWithHeaders);
-    const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "Responses");
-
-    XLSX.writeFile(wb, "responses.xlsx");
-});
- 
-</script>
-
->>>>>>> 2250bc36253082fe0b97557774558c44f1cf2ec6
 
 </body>
 </html>
