@@ -1,0 +1,157 @@
+/* General styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    direction: rtl;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* Header styles */
+header {
+    background: linear-gradient(90deg, #4CAF50, #36A2EB);
+    color: white;
+    padding: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+/* Section styles */
+section {
+    padding: 20px;
+    background-color: white;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer styles */
+footer {
+    background: linear-gradient(90deg, #333, #222);
+    color: #ddd;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 0.9em;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Button styles */
+.button {
+    background: linear-gradient(90deg, #36A2EB, #4CAF50);
+    color: white;
+    font-weight: bold;
+    border: 2px solid transparent;
+    padding: 12px 25px;
+    cursor: pointer;
+    border-radius: 25px; /* يجعل الزر دائريًا */
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+.button:hover {
+    background: linear-gradient(90deg, #4CAF50, #36A2EB);
+    transform: scale(1.05); /* يعطي إحساس بالحيوية */
+}
+
+/* Question and form styles */
+.question {
+    margin: 20px 0;
+    text-align: right;
+    font-weight: bold;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* النصوص تبقى على اليمين */
+    gap: 15px; /* مسافة بين العناصر */
+    margin: 20px auto;
+    width: 95%; /* ملء الشاشة تقريبًا */
+    max-width: 600px; /* تحجيم للعرض الكبير */
+}
+
+label.question {
+    font-size: 1.2em; /* تكبير حجم النص للسؤال */
+    margin-bottom: 10px; /* تباعد بسيط أسفل السؤال */
+    color: #4CAF50; /* لون جذاب للأسئلة */
+}
+
+input[type="checkbox"], input[type="radio"], input[type="number"], input[type="text"], select {
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+input[type="number"], input[type="text"], select {
+    width: calc(100% - 10px);
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+input[type="number"]:focus, input[type="text"]:focus, select:focus {
+    border-color: #36A2EB;
+}
+
+/* Option group styles */
+.option-group {
+    margin: 10px 0;
+}
+
+/* Results display styles */
+#resultsDisplay {
+    margin-top: 20px;
+    display: none;
+}
+
+#resultsList li {
+    text-align: left;
+}
+
+input:invalid, select:invalid {
+    border-color: #E74C3C;
+    background-color: #FDEDEC;
+}
+
+input:valid, select:valid {
+    border-color: #36A2EB;
+    background-color: #F9FFFC;
+}
+
+#resultsDisplay {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#resultsList li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background: #F7F9FC;
+    border-radius: 5px;
+    border-left: 4px solid #36A2EB;
+}
+
+
+
+    form {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .button {
+        width: 100%;
+        padding: 10px;
+    }
+}
