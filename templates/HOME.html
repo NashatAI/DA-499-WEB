@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>موقع تطوير الأداء الدراسي</title>
+  <style>
+    /* ضبط عام للصفحة */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Open Sans', sans-serif;
+      direction: rtl;
+      text-align: right;
+    }
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+    header a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+    header .title {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .hero {
+      background: url('https://yu.edu.jo/images/YUNN/news/eab74c4a-4364-4fcd-be68-05d7d608e6aa.jpg') no-repeat center center/cover;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }
+    .hero h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+    .hero button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      cursor: pointer;
+      font-size: 18px;
+      margin: 5px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    .hero button:hover {
+      background-color: #45a049;
+    }
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 5px 0;
+      width: 100%;
+      font-size: 12px; /* تقليل حجم النص */
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="title">موقع تطوير الأداء الدراسي</div>
+
+  </header>
+  
+  <section class="hero">
+    <h1>ارتقِ بأدائك الدراسي معنا!</h1>
+    <p>اكتشف أفضل الأدوات والنصائح لتحقيق النجاح الأكاديمي.</p>
+       <button class="button" onclick="location.href='http://127.0.0.1:8000';">ابدأ الآن</button>
+  </section>
+
+  <footer>
+    <p>حقوق النشر © 2024. جميع الحقوق محفوظة.</p>
+  </footer>
+</body>
+</html>
